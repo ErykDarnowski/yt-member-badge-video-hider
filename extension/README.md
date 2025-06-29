@@ -1,28 +1,22 @@
 # Chrome-Extension-Base-Template
+
 This is a basic Chrome Extension base template for starting new projects off of initialized with a MIT license.
 
 ## Features
+
 - ..
 - ..
 - ..
 
 ## Author
-First Last
-- [Author Website]()
-- [Author Github]()
-- [Project Repository]()
 
-## Requirements
-### Knowledge
-- HTML
-- CSS
-- Javascript
-- Chrome API
-### Tools
-- Google Chrome Browser
-- IDE or Text Editor of Your Choice
+Eryk Darnowski
+- [Author Website](https://erykdarnowski.pl/)
+- [Author Github](https://github.com/ErykDarnowski/)
+- [Project Repository](https://github.com/ErykDarnowski/)
 
 ## Setup Instructions
+
 ### For Developers
 1. Make a clone of this project, unzipped.
 2. Open Chrome Browser
@@ -38,4 +32,5 @@ First Last
 3. ...
 
 ## License
+
 Please refer to LICENSE file.

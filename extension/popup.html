@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            width: 280px;
+            padding: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            background: #fff;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .toggle-label {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 24px;
+            background: #ccc;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: #4285f4;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(24px);
+        }
+
+        .stats {
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .stats-text {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .stats-count {
+            font-size: 18px;
+            font-weight: 600;
+            color: #4285f4;
+        }
+
+        .reload-notice {
+            margin-top: 12px;
+            padding: 8px;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #856404;
+            text-align: center;
+            display: none;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-active {
+            background: #4caf50;
+        }
+
+        .status-inactive {
+            background: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">YouTube Badge Filter</div>
+        <div class="subtitle">Hides videos with active supporter badges</div>
+    </div>
+
+    <div class="toggle-container">
+        <div class="toggle-label">
+            <span id="status-indicator" class="status-indicator status-inactive"></span>
+            Filter Active
+        </div>
+        <div id="toggle-switch" class="toggle-switch">
+            <div class="toggle-slider"></div>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stats-text">Videos Hidden on This Page</div>
+        <div id="stats-count" class="stats-count">0</div>
+    </div>
+
+    <div id="reload-notice" class="reload-notice">
+        Reload the page to apply changes
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
