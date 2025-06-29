@@ -134,10 +134,19 @@ const urlObserver = new MutationObserver(() => {
         // Reset page count for new page
         pageHiddenCount = 0;
         
-        // Small delay to let YouTube load new content
-        setTimeout(() => {
-            initializeExtension();
-        }, 1000);
+        // Stop filtering if not on channel videos pages
+        if (!location.href.includes('/@') || !location.href.includes('/videos')) {
+            stopFiltering();
+            return;
+        }
+        
+        // Only reinitialize on channel videos pages
+        if (location.href.includes('/@') && location.href.includes('/videos')) {
+            // Small delay to let YouTube load new content
+            setTimeout(() => {
+                initializeExtension();
+            }, 1000);
+        }
     }
 });
 

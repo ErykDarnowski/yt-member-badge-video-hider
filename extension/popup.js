@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Send message to content script about state change
         try {
             const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-            if (tab && tab.url && tab.url.includes('youtube.com')) {
+            if (tab && tab.url && tab.url.includes('youtube.com/@') && tab.url.includes('/videos')) {
                 chrome.tabs.sendMessage(tab.id, { 
                     action: 'toggleFilter', 
                     enabled: newState 
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function updatePageCount() {
         try {
             const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-            if (tab && tab.url && tab.url.includes('youtube.com')) {
+            if (tab && tab.url && tab.url.includes('youtube.com/@') && tab.url.includes('/videos')) {
                 const response = await chrome.tabs.sendMessage(tab.id, { 
                     action: 'getPageCount' 
                 });
@@ -57,11 +57,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                     statsCount.textContent = '0';
                 }
             } else {
-                statsCount.textContent = '0';
+                statsCount.textContent = 'N/A';
             }
         } catch (error) {
             console.log('Could not get page count:', error);
-            statsCount.textContent = '0';
+            statsCount.textContent = 'N/A';
         }
     }
     
