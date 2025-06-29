@@ -1,16 +1,19 @@
-let removedCount = 0;
+let hiddenCount = 0;
 
-const processNewVideos = (() => {
-    // Remove videos containing active supporter badge
+function processNewVideos() {
+    // Hide videos containing active supporter badge instead of removing
     [...document.getElementsByClassName('video-badge')].map(badgeEl => {
-        if (badgeEl.attributes.hidden === undefined) { // check if hidden attribute not set
-            badgeEl.closest('ytd-rich-item-renderer[class*="style-scope"]').remove(); // remove whole vid (with container) if yes
-            removedCount++;
+        if (badgeEl.attributes.hidden === undefined) {
+            const videoContainer = badgeEl.closest('ytd-rich-item-renderer[class*="style-scope"]');
+            if (videoContainer && videoContainer.style.display !== 'none') {
+                videoContainer.style.display = 'none';
+                hiddenCount++;
+            }
         }
     });
     
-    console.log(`Processed videos - removed ${removedCount} supporter badge videos total`);
-});
+    console.log(`Processed videos - hidden ${hiddenCount} supporter badge videos total`);
+}
 
 // Simple observer targeting YouTube's video container
 const videoGridObserver = new MutationObserver((mutations) => {
