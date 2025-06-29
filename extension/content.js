@@ -44,7 +44,7 @@ function processNewVideos() {
     
     if (newlyHidden > 0) {
         pageHiddenCount += newlyHidden;
-        console.log(`YouTube Filter: Hidden ${newlyHidden} new videos (${pageHiddenCount} on this page)`);
+        console.log(`Member Badge Video Hider: Hidden ${newlyHidden} new videos (${pageHiddenCount} on this page)`);
         
         // Send live update to popup if it's open
         chrome.runtime.sendMessage({ 
@@ -86,7 +86,7 @@ function startFiltering() {
         videoGridObserver.observe(gridContainer, { childList: true });
         // Run once initially for existing videos
         processNewVideos();
-        console.log('YouTube Filter: Started filtering');
+        console.log('Member Badge Video Hider: Started filtering');
     } else {
         // If grid isn't ready yet, try again in a bit
         setTimeout(startFiltering, 1000);
@@ -99,7 +99,7 @@ function stopFiltering() {
         videoGridObserver.disconnect();
         videoGridObserver = null;
     }
-    console.log('YouTube Filter: Stopped filtering');
+    console.log('Member Badge Video Hider: Stopped filtering');
 }
 
 // Listen for messages from popup

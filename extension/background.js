@@ -1,6 +1,6 @@
 // background.js
 chrome.runtime.onInstalled.addListener(() => {
-    console.log('YouTube Supporter Badge Filter installed');
+    console.log('Member Badge Video Hider installed');
     
     // Set default settings
     chrome.storage.local.set({
