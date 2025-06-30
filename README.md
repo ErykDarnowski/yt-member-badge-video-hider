@@ -5,13 +5,13 @@ A browser extension that automatically hides videos with **member badges** on Yo
 ### Before:
 
 <p align="center">
-  <img width="800" height="auto" src="https://github.com/user-attachments/assets/10cbdf73-bdcd-4a76-ba36-a0bd5cc993e4">
+  <img width="900" height="auto" src="https://github.com/user-attachments/assets/d302ce36-cbd1-4ee9-9447-c788302a9456">
 </p>
 
 ### After:
 
 <p align="center">
-  <img width="800" height="auto" src="https://github.com/user-attachments/assets/6f5a4ed4-3f3a-481e-82f6-61d4a3a0fd37">
+  <img width="900" height="auto" src="https://github.com/user-attachments/assets/30d0e1c8-6cea-47be-bc16-f5629dc8d743">
 </p>
 
 ## Features
