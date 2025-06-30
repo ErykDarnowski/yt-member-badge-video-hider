@@ -2,6 +2,18 @@
 
 A browser extension that automatically hides videos with **member badges** on YouTube channel video pages. Clean up your viewing experience by filtering out **member-exclusive** content.
 
+### Before:
+
+<p align="center">
+  <img width="800" height="auto" src="https://github.com/user-attachments/assets/10cbdf73-bdcd-4a76-ba36-a0bd5cc993e4">
+</p>
+
+### After:
+
+<p align="center">
+  <img width="800" height="auto" src="https://github.com/user-attachments/assets/6f5a4ed4-3f3a-481e-82f6-61d4a3a0fd37">
+</p>
+
 ## Features
 
 - **Automatic filtering** - Hides videos with member badges as you scroll
