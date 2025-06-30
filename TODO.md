@@ -1,8 +1,9 @@
 # TODO
 
-- Make & add proper icons
-- Add icon in panel above name?\*
+- Add screenshot to README showing yt page + popup active
 <!-- -->
-- Put on GH (repo)
-- Set release tag
-- Save on NAS
+- Upload to chrome store
+- Add link to chrome store in README
+<!-- -->
+- Add release tag + do release on GH
+- Backup to PC + NAS

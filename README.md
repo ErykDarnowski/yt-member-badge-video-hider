@@ -74,7 +74,8 @@ The extension uses a `MutationObserver` to watch for new videos being loaded in 
 ├── extension/            # Browser extension
 │   ├── background.js     # Service worker (handles extension lifecycle)
 │   ├── content.js        # Main filtering logic (what runs on YouTube pages)
-│   ├── icon.png          # Extension icon
+│   ├── icon.png          # Extension icon export
+│   ├── icon.ai           # Extension icon Adobe Illustrator project file
 │   ├── manifest.json     # Extension manifest
 │   ├── popup.html        # Popup interface
 │   └── popup.js          # Popup logic & toggle controls
