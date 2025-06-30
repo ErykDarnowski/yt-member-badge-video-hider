@@ -1,22 +1,26 @@
-// content.js
 let pageHiddenCount = 0; // Count for this specific page
 let filterEnabled = true;
 let videoGridObserver = null;
 let isInitialized = false;
 
-// Initialize the extension
-async function initializeExtension() {
+// initialize the extension
+const initializeExtension = async () => {
     if (isInitialized) return;
     
-    // Load settings from storage
+    // check if we're on a channel's videos page
+    if (!location.href.includes('/@') || !location.href.includes('/videos')) {
+        return;
+    }
+    
+    // load settings from storage
     const result = await chrome.storage.local.get(['filterEnabled']);
     filterEnabled = result.filterEnabled !== false; // Default to true
     
-    // Reset page count for new page
+    // reset page count for new page
     pageHiddenCount = 0;
     
     if (filterEnabled) {
-        // Add a small delay for initial page load
+        // add a small delay for initial page load
         setTimeout(() => {
             startFiltering();
         }, 1500);
@@ -25,15 +29,17 @@ async function initializeExtension() {
     isInitialized = true;
 }
 
-// Main filtering function
-function processNewVideos() {
+// main filtering function
+const processNewVideos = () => {
     if (!filterEnabled) return;
     
     let newlyHidden = 0;
     
-    // Hide videos containing active supporter badge instead of removing
+    // go through badge els
     [...document.getElementsByClassName('video-badge')].forEach(badgeEl => {
+        // check if badge is hidden
         if (badgeEl.attributes.hidden === undefined) {
+            // hide videos containing active supporter badge
             const videoContainer = badgeEl.closest('ytd-rich-item-renderer[class*="style-scope"]');
             if (videoContainer && videoContainer.style.display !== 'none') {
                 videoContainer.style.display = 'none';
@@ -44,28 +50,28 @@ function processNewVideos() {
     
     if (newlyHidden > 0) {
         pageHiddenCount += newlyHidden;
-        console.log(`Member Badge Video Hider: Hidden ${newlyHidden} new videos (${pageHiddenCount} on this page)`);
+        console.info(`Member Badge Video Hider: Hidden ${newlyHidden} new videos (${pageHiddenCount} on this page)`);
         
-        // Send live update to popup if it's open
+        // send live update to popup if it's open
         chrome.runtime.sendMessage({ 
             action: 'updateCount', 
             count: pageHiddenCount 
         }).catch(() => {
-            // Popup might not be open, ignore error
+            // popup might not be open, ignore err
         });
     }
-}
+};
 
-// Start the filtering system
-function startFiltering() {
+// start the filtering system
+const startFiltering = () => {
     if (!filterEnabled) return;
     
-    // Disconnect existing observer
+    // disconnect existing observer
     if (videoGridObserver) {
         videoGridObserver.disconnect();
     }
     
-    // Create new observer
+    // create new observer
     videoGridObserver = new MutationObserver((mutations) => {
         const hasNewVideos = mutations.some(mutation => 
             Array.from(mutation.addedNodes).some(node => 
@@ -76,33 +82,33 @@ function startFiltering() {
         );
         
         if (hasNewVideos) {
-            setTimeout(processNewVideos, 100); // Small delay to ensure DOM is ready
+            setTimeout(processNewVideos, 100); // small delay to ensure DOM is ready
         }
     });
 
-    // Start observing
+    // start observing
     const gridContainer = document.querySelector('ytd-rich-grid-renderer #contents');
     if (gridContainer) {
         videoGridObserver.observe(gridContainer, { childList: true });
-        // Run once initially for existing videos
+        // run once initially for existing videos
         processNewVideos();
-        console.log('Member Badge Video Hider: Started filtering');
+        console.info('Member Badge Video Hider: Started filtering');
     } else {
-        // If grid isn't ready yet, try again in a bit
+        // if grid isn't ready yet, try again in a bit
         setTimeout(startFiltering, 1000);
     }
 }
 
-// Stop filtering and disconnect observer
-function stopFiltering() {
+// stop filtering and disconnect observer
+const stopFiltering = () => {
     if (videoGridObserver) {
         videoGridObserver.disconnect();
         videoGridObserver = null;
     }
-    console.log('Member Badge Video Hider: Stopped filtering');
+    console.info('Member Badge Video Hider: Stopped filtering');
 }
 
-// Listen for messages from popup
+// listen for messages from popup
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'toggleFilter') {
         filterEnabled = request.enabled;
@@ -111,38 +117,38 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             startFiltering();
         } else {
             stopFiltering();
-            // Reset page count when disabled
+            // reset page count when disabled
             pageHiddenCount = 0;
         }
         sendResponse({ success: true });
     } else if (request.action === 'getPageCount') {
-        // Send current page count to popup
+        // send current page count to popup
         sendResponse({ count: pageHiddenCount });
-        return true; // Keep message channel open for async response
+        return true; // keep message channel open for async response
     }
     
-    return true; // Keep message channel open
+    return true; // keep message channel open
 });
 
-// Handle navigation changes (YouTube is a SPA)
+// handle navigation changes (YT uses SPA)
 let currentUrl = location.href;
 const urlObserver = new MutationObserver(() => {
     if (location.href !== currentUrl) {
         currentUrl = location.href;
         isInitialized = false;
         
-        // Reset page count for new page
+        // reset page count for new page
         pageHiddenCount = 0;
         
-        // Stop filtering if not on channel videos pages
+        // stop filtering if not on channel videos pages
         if (!location.href.includes('/@') || !location.href.includes('/videos')) {
             stopFiltering();
             return;
         }
         
-        // Only reinitialize on channel videos pages
+        // only reinitialize on channel videos pages
         if (location.href.includes('/@') && location.href.includes('/videos')) {
-            // Small delay to let YouTube load new content
+            // small delay to let YouTube load new content
             setTimeout(() => {
                 initializeExtension();
             }, 1000);
@@ -150,10 +156,10 @@ const urlObserver = new MutationObserver(() => {
     }
 });
 
-// Start URL monitoring
+// start URL monitoring
 urlObserver.observe(document, { subtree: true, childList: true });
 
-// Initialize when script loads
+// initialize when script loads
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeExtension);
 } else {
