@@ -1,4 +1,4 @@
-# YT Member Video Hider
+# YT Member Badge Video Hider
 
 A browser extension that automatically hides videos with **member badges** on YouTube channel video pages. Clean up your viewing experience by filtering out **member-exclusive** content.
 

@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Member Badge Video Hider",
+  "name": "YT Member Badge Video Hider",
   "version": "1.0.0",
   "author": "Eryk Darnowski",
   "description": "Automatically hides videos with member badges on YouTube channel video pages",
