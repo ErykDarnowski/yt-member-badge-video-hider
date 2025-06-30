@@ -1,36 +1,115 @@
-# Chrome-Extension-Base-Template
+# YT Member Video Hider
 
-This is a basic Chrome Extension base template for starting new projects off of initialized with a MIT license.
+A browser extension that automatically hides videos with **member badges** on YouTube channel video pages. Clean up your viewing experience by filtering out **member-exclusive** content.
 
 ## Features
 
-- ..
-- ..
-- ..
+- **Automatic filtering** - Hides videos with member badges as you scroll
+- **Channel-specific** - Only works on YouTube channel Videos pages (`youtube.com/@<channelname>/videos`)
+- **Toggle control** - Easy on/off switch via popup interface
+- **Live counter** - Shows how many videos are hidden on the current page
+- **Dark mode UI** - Modern, clean popup interface
+- **Tampermonkey version** - Also available as a userscript
+- **No data collection** - Obviously, it works entirely locally
 
-## Author
+## Screenshots
 
-Eryk Darnowski
-- [Author Website](https://erykdarnowski.pl/)
-- [Author Github](https://github.com/ErykDarnowski/)
-- [Project Repository](https://github.com/ErykDarnowski/)
+![Extension Popup](screenshot-popup.png)
+*Clean dark mode popup interface*
 
-## Setup Instructions
+![Before/After](screenshot-before-after.png)
+*Channel page before and after filtering*
+
+## Installation
+
+### For End Users (Chrome Web Store)
+
+*Coming soon - extension pending review*
 
 ### For Developers
-1. Make a clone of this project, unzipped.
-2. Open Chrome Browser
-3. In a new or blank tab, type in "chrome://extensions/" (without the quotes of course) and click [Enter].
-4. At the top right corner of the page, **enable** "Developer Mode"
-5. Click the button on the page that says "Load Unpacked"
-6. Navigate to your unzipped project folder and select that and hit OK.
-7. You are now ready to start working on the extension! Just make sure you reload after each change you make to see the changes take place.
 
-### For End Users
-1. ...
-2. ...
-3. ...
+1. Download or clone this repository
+2. Open your chromium based browser and navigate to `<browser_name>://extensions/`
+3. Enable "Developer Mode" in the top right corner
+4. Click "Load Unpacked" and select the extension folder
+5. The extension is now installed and ready to use!
+
+### Tampermonkey Version
+
+For users who prefer userscripts:
+1. Install [Tampermonkey](https://www.tampermonkey.net/)
+2. Click [here to install the userscript](userscript.js)
+3. Make sure the script is enabled (should be by default) and visit any YouTube channel's Videos page
+
+*If you want to stop filtering out the badges, simply toggle the extension off in the tampermonkey popup*
+
+## Usage
+
+1. **Navigate** to any YouTube channel's Videos page (`youtube.com/@channelname/videos`)
+2. **Click** the extension icon to open the popup
+3. **Toggle** the filter on/off as needed
+4. **Watch** the live counter update as videos are hidden while scrolling
+
+The extension only activates on channel Videos pages - it won't interfere with your regular YouTube browsing.
+
+## How It Works
+
+The extension uses a `MutationObserver` to watch for new videos being loaded in the video grid element as you scroll. When it detects videos with member / supporter badges, it hides them by setting `display: none`. The extension is designed to be lightweight, simple and non-intrusive.
+
+## Technical Details
+
+- **Manifest Version**: 3
+- **Permissions**: `storage`, `tabs`, `activeTab`
+- **Content Script**: Only injected on `*://*.youtube.com/@*/videos`
+- **Popup Interface**: Real-time communication with content script
+- **Storage**: Uses Chrome's local storage for settings persistence
+
+## Development
+
+### Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+
+### Project Structure
+
+```
+.
+├── extension/            # Browser extension
+│   ├── background.js     # Service worker (handles extension lifecycle)
+│   ├── content.js        # Main filtering logic (what runs on YouTube pages)
+│   ├── icon.png          # Extension icon
+│   ├── manifest.json     # Extension manifest
+│   ├── popup.html        # Popup interface
+│   └── popup.js          # Popup logic & toggle controls
+├── LICENSE               
+├── README.md             
+└── tampermonkey.js       # Userscript version (alternative to extension)
+```
+
+### Building
+
+No build process required - this is a vanilla JavaScript extension.
+
+### Testing
+
+1. Load the extension in developer mode
+2. Navigate to any YouTube channel's Videos page
+3. Open the popup and verify the toggle works
+4. Check browser console for any errors
+
+## Credits
+
+This extension was built using the [Chrome Extension Base Template](https://github.com/ewliang/Chrome-Extension-Base-Template) by [ewliang](https://github.com/ewliang). Thank you for providing a nice and simple foundation for browser extension development!
 
 ## License
 
-Please refer to LICENSE file.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+If you encounter any issues or have feature requests, please [open an issue](https://github.com/ErykDarnowski/member-badge-video-hider/issues) on GitHub.
