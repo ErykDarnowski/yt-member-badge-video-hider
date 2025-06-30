@@ -12,14 +12,6 @@ A browser extension that automatically hides videos with **member badges** on Yo
 - **Tampermonkey version** - Also available as a userscript
 - **No data collection** - Obviously, it works entirely locally
 
-## Screenshots
-
-![Extension Popup](screenshot-popup.png)
-*Clean dark mode popup interface*
-
-![Before/After](screenshot-before-after.png)
-*Channel page before and after filtering*
-
 ## Installation
 
 ### For End Users (Chrome Web Store)
@@ -38,7 +30,7 @@ A browser extension that automatically hides videos with **member badges** on Yo
 
 For users who prefer userscripts:
 1. Install [Tampermonkey](https://www.tampermonkey.net/)
-2. Click [here to install the userscript](userscript.js)
+2. [Install the userscript](userscript.js)
 3. Make sure the script is enabled (should be by default) and visit any YouTube channel's Videos page
 
 *If you want to stop filtering out the badges, simply toggle the extension off in the tampermonkey popup*
@@ -112,4 +104,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-If you encounter any issues or have feature requests, please [open an issue](https://github.com/ErykDarnowski/member-badge-video-hider/issues) on GitHub.
+If you encounter any issues or have feature requests, please [open an issue](https://github.com/ErykDarnowski/yt-member-badge-video-hider/issues) on GitHub.
