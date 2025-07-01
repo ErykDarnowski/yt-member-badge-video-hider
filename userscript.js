@@ -7,10 +7,10 @@
 // @match        *://youtube.com/@*/videos
 // @run-at       document-end
 // @grant        none
-// @namespace    
-// @supportURL   
-// @updateURL    
-// @downloadURL  
+// @namespace    https://github.com/ErykDarnowski/yt-member-badge-video-hider
+// @supportURL   https://github.com/ErykDarnowski/yt-member-badge-video-hider
+// @updateURL    https://raw.githubusercontent.com/ErykDarnowski/yt-member-badge-video-hider/refs/heads/main/userscript.js
+// @downloadURL  https://raw.githubusercontent.com/ErykDarnowski/yt-member-badge-video-hider/refs/heads/main/userscript.js
 // ==/UserScript==
 
 /* Releases
