@@ -28,7 +28,7 @@ A browser extension that automatically hides videos with **member badges** on Yo
 
 ### For End Users (Chrome Web Store)
 
-*Coming soon - extension pending review*
+[Get it here!](https://chromewebstore.google.com/detail/yt-member-badge-video-hid/cbhhjhokbciglflmlldhbljibbbnimfp)
 
 ### For Developers
 
